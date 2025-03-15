@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Single page search app built with Rails to browse health-related articles
 
-Things you may want to cover:
+## Setup
 
-* Ruby version
+`bin/setup` (also builds the server)
 
-* System dependencies
+## Test
 
-* Configuration
+`bin/rspec`
 
-* Database creation
+## Build
 
-* Database initialization
+`bin/dev`
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
