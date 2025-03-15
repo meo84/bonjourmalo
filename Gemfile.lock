@@ -117,11 +117,18 @@ GEM
       railties (>= 5.0.0)
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
+    faraday (2.12.2)
+      faraday-net_http (>= 2.0, < 3.5)
+      json
+      logger
+    faraday-net_http (3.4.0)
+      net-http (>= 0.5.0)
     fugit (1.11.1)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    hashie (5.0.0)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.1.0)
@@ -164,6 +171,9 @@ GEM
     mini_mime (1.1.5)
     minitest (5.25.5)
     msgpack (1.8.0)
+    multi_json (1.15.0)
+    net-http (0.6.0)
+      uri
     net-imap (0.5.6)
       date
       net-protocol
@@ -193,6 +203,9 @@ GEM
       racc (~> 1.4)
     nokogiri (1.18.4-x86_64-linux-musl)
       racc (~> 1.4)
+    opensearch-ruby (3.4.0)
+      faraday (>= 1.0, < 3)
+      multi_json (>= 1.0)
     ostruct (0.6.1)
     parallel (1.26.3)
     parser (3.3.7.1)
@@ -313,6 +326,9 @@ GEM
       rubocop-rspec (~> 3.5)
     ruby-progressbar (1.13.0)
     rubyzip (2.4.1)
+    searchkick (5.4.0)
+      activemodel (>= 6.1)
+      hashie
     securerandom (0.4.1)
     selenium-webdriver (4.29.1)
       base64 (~> 0.2)
@@ -398,6 +414,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kamal
+  opensearch-ruby
   pg (~> 1.1)
   propshaft
   puma (>= 5.0)
@@ -405,6 +422,7 @@ DEPENDENCIES
   rspec-rails
   rubocop-rails-omakase
   rubocop-rspec_rails
+  searchkick
   selenium-webdriver
   solid_cable
   solid_cache

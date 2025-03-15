@@ -4,6 +4,10 @@ class ArticleFinder
   end
 
   def call
-    Article.all
+    Article.search(text_query)
   end
+
+  private
+
+  attr_reader :text_query
 end
