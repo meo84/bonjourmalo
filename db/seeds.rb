@@ -42,3 +42,5 @@ posts.each do |post|
   post_tags = post[:tags].uniq { |t| t[:name] }.reject { |t| t[:name].start_with?('#') }
   post_tags.each { |post_tag| add_tag_to_article(tag_details: post_tag, article:) }
 end
+
+Article.reindex

@@ -1,0 +1,44 @@
+#!/bin/bash -l
+
+set -e
+
+if [[ "$OSTYPE" == "linux-gnu" ]];
+then
+    if ! sudo test -f "/etc/opensearch/opensearch.yml" > /dev/null
+    then
+        echo "⏳  Installing OpenSearch"
+        wget https://artifacts.opensearch.org/releases/bundle/opensearch/2.5.0/opensearch-2.5.0-linux-x64.deb -O /tmp/opensearch-linux-x64.deb
+        sudo dpkg -i /tmp/opensearch-linux-x64.deb
+        sudo sed -i "56i network.host: 0.0.0.0\ndiscovery.type: single-node\nplugins.security.disabled: true" /etc/opensearch/opensearch.yml
+        mkdir -p /etc/opensearch/jvm.options.d
+        echo -e "-Xms1g\n-Xmx1g" > /etc/opensearch/jvm.options.d/jvm.options
+        echo "✅  OpenSearch successfully installed"
+        sudo systemctl daemon-reload
+        sudo systemctl enable opensearch
+        echo "✅  OpenSearch successfully installed"
+    else
+        echo "👌  OpenSearch already installed"
+    fi
+elif [[ "$OSTYPE" == "darwin"* ]];
+then
+    if ! command -v opensearch > /dev/null
+    then
+        echo "⏳  Installing Opensearch"
+        brew install opensearch
+        sudo /usr/bin/sed -i '' '55s/.*/network.host: 127.0.0.1/' $(brew --prefix)/etc/opensearch/opensearch.yml
+        mkdir $(brew --prefix)/etc/opensearch/jvm.options.d
+        echo -e "-Xms1g\n-Xmx1g" > $(brew --prefix)/etc/opensearch/jvm.options.d/jvm.options
+        echo "✅  Opensearch successfully installed"
+    else
+        echo "👌  Opensearch already installed"
+    fi
+fi
+
+if [[ "$OSTYPE" == "linux-gnu" ]];
+then
+    sudo systemctl start opensearch
+elif [[ "$OSTYPE" == "darwin"* ]];
+then
+    brew services start opensearch > /dev/null
+fi
+
