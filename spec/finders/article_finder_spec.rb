@@ -7,7 +7,8 @@ describe ArticleFinder do
     create(:article, title: title.gsub("diversification", "santé"))
 
     Article.reindex
-    expect(described_class.new(text_query: "diversification").call).to contain_exactly(article)
+    articles = described_class.new(text_query: "diversification", page: 1, per_page: 10).call
+    expect(articles).to contain_exactly(article)
   end
 
   it 'returns articles with matching text in excerpt' do
@@ -16,7 +17,8 @@ describe ArticleFinder do
     create(:article, excerpt: excerpt.gsub("diversification", "croissance"))
 
     Article.reindex
-    expect(described_class.new(text_query: "diversification").call).to contain_exactly(article)
+    articles = described_class.new(text_query: "diversification", page: 1, per_page: 10).call
+    expect(articles).to contain_exactly(article)
   end
 
   it 'returns articles with matching text in meta_description' do
@@ -25,7 +27,8 @@ describe ArticleFinder do
     create(:article, meta_description: meta_description.gsub("consultation", "vaccin"))
 
     Article.reindex
-    expect(described_class.new(text_query: "consultation").call).to contain_exactly(article)
+    articles = described_class.new(text_query: "consultation", page: 1, per_page: 10).call
+    expect(articles).to contain_exactly(article)
   end
 
   it 'returns articles with matching text in meta_title' do
@@ -34,7 +37,8 @@ describe ArticleFinder do
     create(:article, meta_title: meta_title.gsub("bébé", "santé"))
 
     Article.reindex
-    expect(described_class.new(text_query: "bébé").call).to contain_exactly(article)
+    articles = described_class.new(text_query: "bébé", page: 1, per_page: 10).call
+    expect(articles).to contain_exactly(article)
   end
 
   it 'returns articles with matching text in tag name' do
@@ -49,7 +53,8 @@ describe ArticleFinder do
 
 
     Article.reindex
-    expect(described_class.new(text_query: tag_name).call).to contain_exactly(article)
+    articles = described_class.new(text_query: tag_name, page: 1, per_page: 10).call
+    expect(articles).to contain_exactly(article)
   end
 
   it 'returns articles with matching text in tag description' do
@@ -64,6 +69,7 @@ describe ArticleFinder do
 
 
     Article.reindex
-    expect(described_class.new(text_query: tag_description).call).to contain_exactly(article)
+    articles = described_class.new(text_query: tag_description, page: 1, per_page: 10).call
+    expect(articles).to contain_exactly(article)
   end
 end

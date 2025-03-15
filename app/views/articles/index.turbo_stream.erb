@@ -1,0 +1,8 @@
+<%= turbo_stream.append "articles" do %>
+  <%= render partial: "article", collection: @articles %>
+<% end %>
+<%= turbo_stream.update "load_more" do %>
+  <% if @next_page.present? %>
+    <%= button_to "Load more", articles_url(page: @next_page, query: @query) %>
+  <% end %>
+<% end %>
