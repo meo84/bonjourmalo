@@ -1,0 +1,36 @@
+<main class="container">
+  <div class="header">
+    <div class="logo-container">
+      <img width="1230" height="520" src="https://heloa.app/wp-content/uploads/2025/02/cropped-Heloa-logo_Default_White-1.png" class="logo" alt="Heloa – Aux côtés des parents" decoding="async" fetchpriority="high" srcset="https://heloa.app/wp-content/uploads/2025/02/cropped-Heloa-logo_Default_White-1.png 1230w, https://heloa.app/wp-content/uploads/2025/02/cropped-Heloa-logo_Default_White-1-300x127.png 300w, https://heloa.app/wp-content/uploads/2025/02/cropped-Heloa-logo_Default_White-1-1024x433.png 1024w, https://heloa.app/wp-content/uploads/2025/02/cropped-Heloa-logo_Default_White-1-768x325.png 768w" sizes="(max-width: 1230px) 100vw, 1230px">
+    </div>
+  </div>
+
+  <div class="search-container">
+    <%= form_with url: articles_path, method: :get, class: "search-form", data: { turbo_frame: "articles_list", turbo_action: "advance" } do |f| %>
+      <%= button_tag type: 'submit', class: 'search-button' do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      <% end %>
+      <%= f.text_field :query, placeholder: "Search articles...", class: "search-input", value: params[:query],
+                       data: { controller: "search", action: "input->search#submit" } %>
+    <% end %>
+  </div>
+
+  <div id="articles" class="articles-container">
+    <% if @articles.any? %>
+      <%= render @articles %>
+    <% else %>
+      <p>Sorry, but nothing matched your search terms. Please try again with some different keywords.</p>
+    <% end %>
+  </div>
+
+  <div id="load_more">
+    <% if @next_page.present? %>
+      <%= button_to "Load more", articles_url(page: @next_page, query: params[:query]),
+          data: { turbo_stream: true } %>
+    <% end %>
+  </div>
+</main>
+
