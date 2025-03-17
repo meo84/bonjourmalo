@@ -1,7 +1,7 @@
-<div class="article-card">
+<div class="c-card">
   <%= image_tag article.feature_image_url.presence || asset_path('heloa_app_icon.png'),
              alt: "#{article.title} image",
-             class: 'article-image',
+             class: 'c-card__image',
              onerror: "this.src='#{asset_path('heloa_app_icon.png')}'" %>
-  <h2><%= article.title %></h2>
+  <h2 class="c-card__title"><%= article.title %></h2>
 </div>

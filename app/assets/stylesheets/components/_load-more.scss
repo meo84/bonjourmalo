@@ -1,0 +1,21 @@
+@use "../mixins" as *;
+
+.c-load-more {
+  @include flex(center, center);
+  margin: 20px 0;
+
+  button {
+    padding: 10px 20px;
+    background-color: var(--color-background-highlighted);
+    color: var(--color-text-muted);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: var(--font-size-m);
+    @include transition;
+
+    &:hover {
+      color: var(--color-text-header);
+    }
+  }
+}

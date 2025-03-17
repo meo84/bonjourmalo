@@ -1,0 +1,16 @@
+@use "../mixins" as *;
+
+.c-header {
+  background-color: var(--color-background-header);
+  padding: 20px;
+
+  &__logo-container {
+    @include flex(flex-start, center);
+  }
+
+  &__logo {
+    height: 30px;
+    width: auto;
+    margin-left: 10px;
+  }
+}
