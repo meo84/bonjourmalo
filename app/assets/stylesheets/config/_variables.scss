@@ -1,0 +1,28 @@
+:root {
+  --font-family-sans: 'Outfit', sans-serif;
+
+  --line-height-headers: 1.4;
+  --line-height-body:    1.6;
+
+  --font-size-l: 1.125rem;
+  --font-size-m: 1rem;
+  --font-size-s: 0.875rem;
+
+  --color-text-header: #333;
+  --color-text-muted: #aaa;
+  --color-text-highlighted: #ff6a3d;
+
+  --color-background-header: #f86b4f;
+  --color-background-body: #f6f6f6;
+  --color-background-card: white;
+  --color-background-highlighted: #f7f7f7;
+  --color-light: #f1f1f1;
+
+  --border: solid 1px var(--color-light);
+  --border-radius: 0.25rem;
+
+  --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-highlighted: 0 0 5px rgba(255, 106, 61, 0.3);
+
+  --space-l: 1.5rem;
+}
