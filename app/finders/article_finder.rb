@@ -6,7 +6,8 @@ class ArticleFinder
   end
 
   def call
-    Article.search(text_query, order: {_score: :desc}, page:, per_page:)
+    Article.search(text_query, order: { _score: :desc }, page:, per_page:,
+                   fields: [ "title^10", "excerpt^5", "meta_description", "meta_title", "tag_names", "tag_descriptions" ])
   end
 
   private
